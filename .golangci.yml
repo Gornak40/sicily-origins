@@ -1,0 +1,17 @@
+linters:
+  enable-all: true
+  disable:
+    - gofumpt
+    - depguard
+    - wsl
+    - wrapcheck
+    - exhaustruct
+    - execinquery
+    - gomnd
+    - varnamelen
+    - godox
+    - exportloopref
+
+linters-settings:
+  cyclop:
+    max-complexity: 15
