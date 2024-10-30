@@ -18,7 +18,7 @@ const (
 	CardDon
 )
 
-func (c Card) GetName() string {
+func (c Card) Name() string {
 	switch c {
 	case CardJoker:
 		return "Joker"

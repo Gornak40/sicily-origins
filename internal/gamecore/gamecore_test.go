@@ -52,6 +52,6 @@ func TestAppendDrop(t *testing.T) {
 func TestGetName(t *testing.T) {
 	t.Parallel()
 
-	assert.Panics(t, func() { gamecore.Card(8).GetName() })
-	assert.Panics(t, func() { gamecore.Card(-1).GetName() })
+	assert.Panics(t, func() { gamecore.Card(8).Name() })
+	assert.Panics(t, func() { gamecore.Card(-1).Name() })
 }
