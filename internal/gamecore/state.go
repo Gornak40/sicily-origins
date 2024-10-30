@@ -16,10 +16,19 @@ type Player struct {
 	GangTrap  bool
 }
 
+func (p *Player) CapoInt() int {
+	if p.CapoBoost {
+		return 2
+	}
+
+	return 0
+}
+
 type GameState struct {
-	Red   Player
-	Black Player
-	Turn  int
+	Red     Player
+	Black   Player
+	Turn    int
+	Pending int
 }
 
 func initState(_ int) GameState {

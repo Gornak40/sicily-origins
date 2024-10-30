@@ -49,9 +49,10 @@ func getHandString(turn int, deck gamecore.DeckHand) string {
 //nolint:forbidigo // Temp solution.
 func listInfo(s *gamecore.GameState) {
 	fmt.Printf("TURN: %d\n", s.Turn)
+	fmt.Printf("PENDING: %d\n", s.Pending)
 	fmt.Printf("RED SCORE: %d\n", s.Red.Score)
-	fmt.Printf("RED HAND: %s\n", getHandString(s.Turn, s.Red.Deck))
 	fmt.Printf("BLACK SCORE: %d\n", s.Black.Score)
+	fmt.Printf("RED HAND: %s\n", getHandString(s.Turn, s.Red.Deck))
 	fmt.Printf("BLACK HAND: %s\n", getHandString(s.Turn, s.Black.Deck))
 	fmt.Println("===")
 }

@@ -40,3 +40,7 @@ func (c Card) Name() string {
 		panic(fmt.Sprintf("unknown card %d", c))
 	}
 }
+
+func (c Card) Power() int {
+	return int(c)
+}
