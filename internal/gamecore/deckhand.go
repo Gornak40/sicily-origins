@@ -7,7 +7,6 @@ type DeckHand int
 
 // Turn must be less than 8.
 func (d DeckHand) GetHand(turn int) []Card {
-	d >>= (turn * 3)
 	cards := make([]Card, 0, 3)
 	cards = append(cards, Card(d&7))
 	if turn < 7 {
@@ -56,7 +55,7 @@ func (d *DeckHand) drop1() Card {
 
 func (d *DeckHand) drop2() Card {
 	c := Card(*d >> 6 & 7)
-	c01 := *d & 63
+	c01 := *d & 0x3f
 	*d = *d>>9<<6 | c01
 
 	return c
