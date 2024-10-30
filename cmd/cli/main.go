@@ -2,21 +2,34 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
 	"strings"
 
 	"github.com/Gornak40/sicily-origins/internal/gamecore"
 )
 
+//nolint:forbidigo,gosec // Temp solution.
 func main() {
 	eng := gamecore.NewEngine(1)
 	go eng.Run()
 
 	for {
 		select {
-		case state := <-eng.State():
-			listInfo(&state)
-		case status := <-eng.Status():
-			endGame(status)
+		case s := <-eng.State():
+			listInfo(&s)
+			rh := s.Red.Deck.GetHand(s.Turn)
+			ridx := rand.Intn(len(rh))
+			bh := s.Black.Deck.GetHand(s.Turn)
+			bidx := rand.Intn(len(bh))
+			fmt.Printf("RED PLAYS: %s\n", rh[ridx].Name())
+			fmt.Printf("BLACK PLAYS: %s\n", bh[bidx].Name())
+			fmt.Println()
+			eng.Round() <- gamecore.GameRound{
+				RedCardIdx:   ridx,
+				BlackCardIdx: bidx,
+			}
+		case s := <-eng.Status():
+			endGame(s)
 
 			return
 		}
@@ -40,7 +53,7 @@ func listInfo(s *gamecore.GameState) {
 	fmt.Printf("RED HAND: %s\n", getHandString(s.Turn, s.Red.Deck))
 	fmt.Printf("BLACK SCORE: %d\n", s.Black.Score)
 	fmt.Printf("BLACK HAND: %s\n", getHandString(s.Turn, s.Black.Deck))
-	fmt.Println()
+	fmt.Println("===")
 }
 
 //nolint:forbidigo // Temp solution.
