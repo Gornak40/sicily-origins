@@ -11,6 +11,7 @@ linters:
     - varnamelen
     - godox
     - exportloopref
+    - mnd # Too much bit magic in this project.
 
 linters-settings:
   cyclop:
